@@ -1,0 +1,668 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>IROS 2020 SLAM and Navigation papers</title><style>
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, YuMincho, "Yu Mincho", "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Songti TC", "Songti SC", "SimSun", "Nanum Myeongjo", NanumMyeongjo, Batang, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC', 'Noto Sans CJK KR'; }
+
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC', 'Noto Sans Mono CJK KR'; }
+
+.highlight-default {
+}
+.highlight-gray {
+	color: rgb(155,154,151);
+}
+.highlight-brown {
+	color: rgb(100,71,58);
+}
+.highlight-orange {
+	color: rgb(217,115,13);
+}
+.highlight-yellow {
+	color: rgb(223,171,1);
+}
+.highlight-teal {
+	color: rgb(15,123,108);
+}
+.highlight-blue {
+	color: rgb(11,110,153);
+}
+.highlight-purple {
+	color: rgb(105,64,165);
+}
+.highlight-pink {
+	color: rgb(173,26,114);
+}
+.highlight-red {
+	color: rgb(224,62,62);
+}
+.highlight-gray_background {
+	background: rgb(235,236,237);
+}
+.highlight-brown_background {
+	background: rgb(233,229,227);
+}
+.highlight-orange_background {
+	background: rgb(250,235,221);
+}
+.highlight-yellow_background {
+	background: rgb(251,243,219);
+}
+.highlight-teal_background {
+	background: rgb(221,237,234);
+}
+.highlight-blue_background {
+	background: rgb(221,235,241);
+}
+.highlight-purple_background {
+	background: rgb(234,228,242);
+}
+.highlight-pink_background {
+	background: rgb(244,223,235);
+}
+.highlight-red_background {
+	background: rgb(251,228,228);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(55, 53, 47, 0.6);
+	fill: rgba(55, 53, 47, 0.6);
+}
+.block-color-brown {
+	color: rgb(100,71,58);
+	fill: rgb(100,71,58);
+}
+.block-color-orange {
+	color: rgb(217,115,13);
+	fill: rgb(217,115,13);
+}
+.block-color-yellow {
+	color: rgb(223,171,1);
+	fill: rgb(223,171,1);
+}
+.block-color-teal {
+	color: rgb(15,123,108);
+	fill: rgb(15,123,108);
+}
+.block-color-blue {
+	color: rgb(11,110,153);
+	fill: rgb(11,110,153);
+}
+.block-color-purple {
+	color: rgb(105,64,165);
+	fill: rgb(105,64,165);
+}
+.block-color-pink {
+	color: rgb(173,26,114);
+	fill: rgb(173,26,114);
+}
+.block-color-red {
+	color: rgb(224,62,62);
+	fill: rgb(224,62,62);
+}
+.block-color-gray_background {
+	background: rgb(235,236,237);
+}
+.block-color-brown_background {
+	background: rgb(233,229,227);
+}
+.block-color-orange_background {
+	background: rgb(250,235,221);
+}
+.block-color-yellow_background {
+	background: rgb(251,243,219);
+}
+.block-color-teal_background {
+	background: rgb(221,237,234);
+}
+.block-color-blue_background {
+	background: rgb(221,235,241);
+}
+.block-color-purple_background {
+	background: rgb(234,228,242);
+}
+.block-color-pink_background {
+	background: rgb(244,223,235);
+}
+.block-color-red_background {
+	background: rgb(251,228,228);
+}
+.select-value-color-default { background-color: rgba(206,205,202,0.5); }
+.select-value-color-gray { background-color: rgba(155,154,151, 0.4); }
+.select-value-color-brown { background-color: rgba(140,46,0,0.2); }
+.select-value-color-orange { background-color: rgba(245,93,0,0.2); }
+.select-value-color-yellow { background-color: rgba(233,168,0,0.2); }
+.select-value-color-green { background-color: rgba(0,135,107,0.2); }
+.select-value-color-blue { background-color: rgba(0,120,223,0.2); }
+.select-value-color-purple { background-color: rgba(103,36,222,0.2); }
+.select-value-color-pink { background-color: rgba(221,0,129,0.2); }
+.select-value-color-red { background-color: rgba(255,0,26,0.2); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="70af3e11-9729-405c-979e-3f529ceadb21" class="page sans"><header><h1 class="page-title">IROS 2020 SLAM and Navigation papers</h1></header><div class="page-body"><h3 id="ad4c8f1e-b122-44a5-81db-1c87504c06b4" class="">Arranged by Giseop Kim (paulgkim@kaist.ac.kr, <a href="http://bit.ly/gk_profile">http://bit.ly/gk_profile</a>)</h3><p id="004ac52f-bd81-43d7-b166-ff2a0278ec18" class="">
+</p><nav id="e06cbcad-72ba-4c89-8f3e-7af31665693d" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#ad4c8f1e-b122-44a5-81db-1c87504c06b4">Arranged by Giseop Kim (paulgkim@kaist.ac.kr, <a href="http://bit.ly/gk_profile">http://bit.ly/gk_profile</a>)</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#357cdcc1-17a8-4989-8320-5b9be5dab16b">NOTE</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#cd42fdf6-ed6e-446c-8848-31cfce816dd3">Calibrations (mostly about offline)</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#950344dc-f823-4328-b701-68225c768112">SLAM — Front-end (i.e., online state estimation of a single agent)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#0c7c212a-4286-4fe4-8731-a9142fa325ce"> <strong>Dataset</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#950b72ed-8c91-4864-8c20-568a11bf05a5"> <strong>Visual sensors (mostly about </strong><em><strong>proposing a novel factor</strong></em><strong>)</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c2924ff4-2989-4d5d-bb35-2f732c1147bc"> <strong>Range sensors (including registration)</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#fe6f13dc-7e2b-4227-bec5-510fd8fde59a"> <strong>Other sensors (thermal camera, UWB, event camera, etc.)</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9e831a70-af77-408c-ae6b-bd5d2e047829"> <strong>Dynamic environments</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#98be75d8-64a0-476c-a3c9-678fe4576de7"> <strong>Learning</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#af7a8bea-3d0e-4f33-9b7e-ef80e679b934"> <strong>Non-rigid SLAM</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#8a26e93d-f9bd-418f-90ab-02027beeb1d7">SLAM — Back-end</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e89b1e62-cbaf-4b03-be71-6666295eb869"><strong>Novel Solvers or Formulations</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a507869d-0dac-4fa3-a18d-72f2fea30be0"><strong>Robust back-end</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c43f024d-0dbe-4edc-9795-450606f7f91f"><strong>Active SLAM</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#b5424c3d-393c-4ad0-9580-4acf04540afc"><strong>SLAM — Applications</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#93b484db-d475-4d70-9c96-9a3b54263fa5">System Paper</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5774ada5-bd34-4705-915d-d29a1013f49d">SLAM for Everyone</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#eb09522e-6b05-4ba1-ba7b-81247042434e">Field — Underwater </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a2d12d28-440b-417b-92ad-3fad2474bc43"><strong>Field — Construction</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#d93e8c00-91a0-4ac0-a0a8-f07d08fa484d"><strong>Localization (i.e., s</strong>tate estimation of a single agent w.r.t a <em>given map</em>)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e40d1132-69a7-434b-bdaa-5c3e4f57db13"> <strong>Datasets</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a4d19b41-94d1-48b3-ae5f-5f3f5db4fb81"> <strong>Visual sensors</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1bd6d338-d1e1-400f-b2f9-52ab6695ce0c"> <strong>Range sensors</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5c195c77-7945-4c0a-b64e-5c4efb3f55e3"> <strong>Application</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1577905f-5bd3-471e-9993-e70d2c4bb83d"> <strong>Non-accurate enough for navigation</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5e2e0b47-dbc5-4ff1-a531-74711dd26340">Cooperative SLAM (i.e., temporally or spatially separated multi-agent SLAM)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9d8a8f5f-c753-4bff-8d64-ed29a0596c61"> <strong>Middle-ends (about robust data association)</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#6a8b9aaa-53bf-489f-8d51-92c7d4606648"> <strong>Back-ends</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9a01ff37-64a7-4b01-ba43-bddeb421060a"> Planning</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#90416d71-6df2-44b3-a5ae-0191c20a7630"> <strong>Applications</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#94a03920-f3f7-4bee-96da-a935db1097ac">Mapping (i.e., World modeling)</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#de98f007-62cb-4632-907c-b6577767d088"> <strong>About representation </strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#1582ff75-82aa-4fe7-be7b-ba8c57f99990"> <strong>About accuracy </strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9e21d9f5-06b6-4153-9392-048406c4d5d7"> <strong>About efficiency</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e53c9207-94b2-4405-b4af-04cc4fe0204a"> <strong>About dynamicity (see also &lt;Dynamic environments of SLAM front-end&gt;)</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e9183179-6922-4c08-ac0d-8b8a8c0a8dee"><strong>Change Detection and M</strong>ap Management </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#f9209950-75f6-42c9-8367-dab6873fc7bf">Point cloud-based Perception </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e0d499e1-121a-4bf6-8ec1-700bb9e2afc0">3D data processing </a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#adeb108f-03a8-40dd-8ef4-21d8925581f1">  3D Object detection</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#63125ea6-acd7-4508-90f6-6afaaae30528">  Point cloud Segmentation</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#608edaee-8d01-4682-bdba-db28b7f280fa"><strong>Path Planning for Exploration (including Active SLAM)</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#dca199e6-8bda-4074-935f-060cc9e5529a"><strong>Active SLAM</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#cf098b2f-5470-45b6-9ca5-7823dc4ecd2e"><strong>Learning </strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#e4707041-565b-458c-80e9-4775438a9896"><strong>Path Planning for Collision Avoidance (e.g., crowd environment)</strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#52ff1a8d-e0b6-4dd3-8004-468486b811fd"> <strong>Non-learning </strong></a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#63f0eee5-e332-4a9b-9084-03691bc535ae"> <strong>Learning </strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#9641ac0e-aa61-462f-a2ce-649dbaf10a76">Navigation</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#6f38cab6-2f6a-4d99-bd93-6b7919ce196e">Autonomous Driving </a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#c63f0268-bb9b-4453-ba3c-94a7cec495c6">HRI</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#4e706b62-1458-49e1-8152-a779f818109a">Best paper finalists</a></div></nav><h2 id="357cdcc1-17a8-4989-8320-5b9be5dab16b" class="">NOTE</h2><ul id="a3d88466-4112-463f-8cf9-8435c9ace450" class="bulleted-list"><li>The below subtitles and taxonomy are <em>redefined</em><strong><em> </em></strong>(would be ambiguous) by myself for my research-intended purpose.<p id="fd3cee8f-78cc-4eeb-8c2b-3db03e7e81a8" class="">A summary or personal comment are followed by each paper&#x27;s title. </p></li></ul><ul id="6b3b872c-a68b-4da9-bf73-97c368dea84a" class="bulleted-list"><li>To do (not yet explored)...<ul id="92afb772-3a1c-4eb3-82cb-b23ced9f90c8" class="bulleted-list"><li>Localization, Mapping and Navigation — Motion and Path Planning - Coverage, Motion and Path Planning I, Motion and Path Planning II, Motion and Path Planning III, Navigation and Collision Avoidance, Planning and Safety, Planning in Challenging Environments, RL for Navigation and Locomotion, Reactive and Sensor-based Planning I, Reactive and Sensor-based Planning II, Task Planning, </li></ul><ul id="b0135c19-d9e9-4682-aff4-3f6942d16cb0" class="bulleted-list"><li>Air, Sea, and Space Robots / Human-Robot Interaction, Teleoperation, and VR / Industry 4.0</li></ul></li></ul><p id="18a73508-fe23-4d68-a3af-ecfc6dc247e6" class="">
+</p><hr id="37e7af45-f67e-453a-8864-79cb420fb11b"/><hr id="9ad242e8-8912-4b2e-ace9-54a2963c0c02"/><h2 id="cd42fdf6-ed6e-446c-8848-31cfce816dd3" class="">Calibrations (mostly about offline)</h2><p id="7ef09791-0cc1-44d9-8897-bd9bf6cdb2ac" class=""><strong>NOTE: online calibration is included in the &lt;SLAM — Front-end&gt; list.</strong></p><ul id="ca98de51-5316-4e62-85d5-0d944bdc186e" class="bulleted-list"><li><em>Non-overlapping RGB-D Camera Network Calibration with Monocular Visual Odometry</em><p id="27fd189d-6a87-4a45-bdbd-93ce7e9f5022" class="">AIST</p></li></ul><ul id="ea1663a0-d5c8-4ede-b186-275b05af1fd7" class="bulleted-list"><li><em>Unified Calibration for Multi-camera Multi-LiDAR Systems using a Single Checkerboard</em><p id="2af87218-4a9d-409e-b404-99ef8a04c17b" class="">Changhee Won of OmniSLAM</p></li></ul><ul id="8f116852-d718-494b-b70b-6d88ecc409df" class="bulleted-list"><li><em>Experimental Evaluation of 3D-LIDAR Camera Extrinsic Calibration</em></li></ul><ul id="d4d108b4-ac48-4c39-867b-23fb9a95e8fb" class="bulleted-list"><li><em>Set-Membership Extrinsic Calibration of a 3D LiDAR and a Camera</em></li></ul><ul id="02fa412b-6527-41a5-b5c7-7b2dbc5aa486" class="bulleted-list"><li><em>Automatic Targetless Extrinsic Calibration of Multiple 3D LiDARs and Radars</em></li></ul><ul id="891d9571-ea72-4f6b-8013-306ecbb9174b" class="bulleted-list"><li><em>Information Driven Self-Calibration for Lidar-Inertial Systems</em></li></ul><ul id="bc1ba758-bacd-4139-80b5-b1ac6ce8abc3" class="bulleted-list"><li><em>Extrinsic and Temporal Calibration of Automotive Radar and 3D LiDAR</em></li></ul><ul id="7f25a8a9-f276-4c2c-bc72-d9e9018ce7eb" class="bulleted-list"><li><em>Targetless Calibration of LiDAR-IMU System Based on Continuous-Time Batch Estimation</em></li></ul><ul id="ff936d88-7709-43c1-ba61-c14506147e88" class="bulleted-list"><li><em>Spatiotemporal Calibration of Camera and 3D Laser Scanner</em></li></ul><p id="6900345f-b6f9-468c-b4bc-27b23feb43b1" class="">
+</p><hr id="41c77460-a613-4530-802f-6f700d4b480b"/><hr id="4c6bfcfa-b0a0-4645-a09f-44a45963533a"/><h2 id="950344dc-f823-4328-b701-68225c768112" class="">SLAM — Front-end (i.e., online state estimation of a single agent)</h2><p id="e84335bb-a2be-4887-b860-4ea15e7e6df0" class="">This category is shown in various circumstances — <strong>Including </strong><div class="indented"><p id="82419bfe-3ed7-4c2a-a0ad-ef118d92a47a" class=""><strong>registration </strong></p><p id="cae69ad9-65b3-4cae-b57a-9f5b5736b841" class=""><strong>odometry </strong></p><p id="45523a21-7939-4f90-b85e-76b630d2970b" class=""><strong>sensor fusion </strong></p><p id="34fe1b0d-226b-47f3-bc45-d27558258bdf" class="">but place recognition is not included in here, but in localization  </p><hr id="61c29324-87d2-424c-b981-d251e354e613"/></div></p><h3 id="0c7c212a-4286-4fe4-8731-a9142fa325ce" class=""> <strong>Dataset</strong></h3><ul id="0dcc36e6-4f23-4ea7-a3cf-6d5e2ea66bce" class="bulleted-list"><li><em>TartanAir: A Dataset to Push the Limits of Visual SLAM</em><p id="773bb59f-cc60-4a6c-a301-52dfe2e06270" class="">30 photo-realistic simul env. with moving obj, various light and weather conditions</p><p id="e89bd774-fbc1-4891-b0b1-865557c7b5f5" class="">multi-modal sensors </p></li></ul><ul id="0b75b3b5-5b04-4f7c-907e-596f8cf2b5fa" class="bulleted-list"><li><em>The Newer College Dataset Handheld LiDAR, Inertial and Vision with Ground Truth</em><p id="9fd391d5-5703-44a0-939b-06d8483283fa" class="">Oxford, Maurice Fallon</p></li></ul><h3 id="950b72ed-8c91-4864-8c20-568a11bf05a5" class=""> <strong>Visual sensors (mostly about </strong><em><strong>proposing a novel factor</strong></em><strong>)</strong></h3><p id="a4711843-1ddf-4450-8686-67f14b60020b" class="">    <strong>novel factors from a new type of structure, semantic, object, sensor fusion, etc.</strong></p><ul id="77de6b5f-a8f0-4b8a-8fa2-45f2e4092cfd" class="bulleted-list"><li><em>Visual SLAM with Drift-Free Rotation Estimation in Manhattan World</em></li></ul><ul id="ae06eb41-f495-46f9-95d2-0a67db833c6b" class="bulleted-list"><li><em>Structure-SLAM: Low-Drift Monocular SLAM in Indoor Environments</em></li></ul><ul id="616c146d-7e6f-46fa-958d-3eb3454f3784" class="bulleted-list"><li><em>From Points to Planes: Adding Planar Constraints to Monocular SLAM Factor Graphs</em><p id="9184a513-a67f-46a3-9426-059c6d4bc828" class="">Civera, Javier</p></li></ul><ul id="24e0a039-8901-413f-902c-254262936cf6" class="bulleted-list"><li>Edge-based Visual Odometry with Stereo Cameras using Multiple Oriented Quadtrees<p id="efd66474-055f-429d-9ede-b91d812d7dba" class="">SNU</p></li></ul><ul id="098f07e4-4cb8-4449-a98e-70a06247a97e" class="bulleted-list"><li><em>Leveraging Planar Regularities for Point Line Visual-Inertial Odometry</em><p id="2813b854-c131-4ff0-8718-42e7f7341b0f" class="">points and structural lines are used to detect plane and build 3D mesh</p><p id="4bc223a5-fcdb-4573-96a9-4570cd73a943" class="">but the recent iPad mesh mapping seems much better ...</p></li></ul><ul id="25b391ee-2e0e-4907-9b9d-0dad2457dde9" class="bulleted-list"><li><em>Dual-SLAM: A framework for robust single camera navigation</em></li></ul><ul id="ed90239c-b4fb-4398-8b74-ffa1fe21caee" class="bulleted-list"><li><em>Robust Monocular Edge Visual Odometry through Coarse-to-Fine Data Association</em><p id="aeec7ed6-5092-4205-87d3-f8de3b83cd05" class="">edge-guided coarse-to-fine data association </p></li></ul><ul id="c1fb9335-8949-42c9-8181-6729bf8cc4f9" class="bulleted-list"><li><em>Perspective-2-Ellipsoid: Bridging the Gap Between Object Detections and 6-DoF Camera Pose</em><p id="5d079017-d446-46cf-950d-a6caa8535a5f" class="">using at least 2 ellipsoids, the 6d estimation in downed to orientation-only prob.</p></li></ul><ul id="1092e2c9-cf3c-45cc-96d3-1c3f5925b624" class="bulleted-list"><li><em>Exploiting Semantic and Public Prior Information in MonoSLAM</em><p id="ac06aa8f-e2e8-4860-a4e3-b16a65f96635" class="">using DeepLabV3+ and OSM</p></li></ul><ul id="eec30e2c-52ed-4ff1-a08e-7e03433195ac" class="bulleted-list"><li><em>DUI-VIO: Depth Uncertainty Incorporated Visual Inertial Odometry based on an RGB-D Camera</em><p id="cb21bf3c-ad20-4b2f-b389-953a78d15eb5" class="">GMM for uncertainty of depth data </p></li></ul><ul id="5e3e8f39-0a58-4373-8bdf-935131778dd2" class="bulleted-list"><li><em>OrcVIO: Object residual constrained Visual-Inertial Odometry</em><p id="dea991bb-a9c9-4546-87f3-de26348cee48" class="">a joint ego-motion, object pose and shape estimation algorithm</p></li></ul><ul id="b4110241-3d14-4b29-badc-df3ba176063c" class="bulleted-list"><li><em>Tightly-Coupled Fusion of Global Positional Measurements in Optimization-Based Visual-Inertial Odometry</em><p id="aab930aa-ebe3-4402-a9d7-dcd1b15e5612" class="">Scaramuzza</p></li></ul><ul id="90a7456b-c188-4268-a4b7-7c5d06e1f3ac" class="bulleted-list"><li><em>Consistent Covariance Pre-Integration for Invariant Filters with Delayed Measurements</em><p id="5a6b84ae-5724-4413-999a-e5ec62416ccb" class="">SP-EKF revisited</p><p id="c8fc708b-9565-4e32-bc39-1dc1d41a5415" class="">The efficient fusion of delayed measurement was extended by the use of the IEKF methodology to achieve consistent results </p></li></ul><ul id="dea34df8-7db3-409c-b919-4aa3134a4f7c" class="bulleted-list"><li><em>ROVINS: Robust Omnidirectional Visual Inertial Navigation System</em><p id="d295384f-33a1-4035-b2c4-adbf9803c744" class="">prof Jongwoo Lim, Hanyang Univ </p></li></ul><ul id="df134b75-dcef-473c-bfa2-20d296e0e9f9" class="bulleted-list"><li><em>Visual-Inertial-Wheel Odometry with Online Calibration</em><p id="0d7d09e7-b5db-4eac-82c5-89911baeb791" class="">Delaware univ. prof Huang. </p></li></ul><ul id="053bccfa-74ae-48d3-ab00-29d6593d9654" class="bulleted-list"><li><em>A Robust Multi-Stereo Visual-Inertial Odometry Pipeline</em><p id="2cb8d371-5603-4266-9266-a3a2b2a2efe4" class="">Mangelson, Joshua (of PCM) and Kaess</p><p id="f302f8b5-0481-40d8-af89-3fc0c4d079bd" class="">indirect vio </p><p id="baa50ad2-b347-4a62-8d44-2cf88963aec6" class="">1-point RANSAC for outlier rejection across multiple stereo pairs </p><p id="b8173552-49e3-47b3-9cf4-56d80091a796" class="">incorporating extrinsic calib uncertainty into the factor graph optimization </p></li></ul><ul id="cb642822-0e69-4edf-a88c-45a3a04c37ce" class="bulleted-list"><li><em>Variational Inference with Parameter Learning Applied to Vehicle Trajectory Estimation</em><p id="a501561f-2008-49c2-ad77-f9dd26a16910" class="">T Barfoot</p></li></ul><ul id="9e9cfb69-858c-452a-8129-9bd70a98dc37" class="bulleted-list"><li><em>TLIO - Tight Learned Inertial Odometry</em><p id="65da6d84-8acb-4c66-acff-3fa0988b8ccc" class="">Jakob Engel / GRASP lab + FB reality lab</p></li></ul><h3 id="c2924ff4-2989-4d5d-bb35-2f732c1147bc" class=""> <strong>Range sensors (including registration)</strong></h3><ul id="6df57a64-10a4-4b81-b51f-aec9f692ad78" class="bulleted-list"><li><em>CoBigICP: Robust and Precise Point Set Registration Using Correntropy Metrics and Bidirectional Correspondence</em><p id="2c58ca85-b0a5-462f-8360-cbe6dee15b7d" class="">A robust error metric: corr-entropy</p><p id="a3a40c3a-32ae-4f29-ae38-31ff35aa7f52" class="">on-manifold SE(3) (i.e., se(3)) solution </p></li></ul><ul id="406a3e78-239b-4967-b3b3-29c7685fcdb6" class="bulleted-list"><li><em>LIO-SAM: Tightly-Coupled Lidar Inertial Odometry Via Smoothing and Mapping</em><p id="19491af0-4530-4226-9b66-d231361e6a0d" class="">The author of LeGO-LOAM</p><p id="d29fc16c-4f9d-4327-bd8f-60b79f84fc83" class="">including loop closing </p></li></ul><ul id="dc0c5f2d-c7c7-4540-a089-9ff96366bf47" class="bulleted-list"><li><em>LiTAMIN: LiDAR Based Tracking and MappINg by Stabilized ICP for Geometry Approximation with Normal Distributions</em><p id="9ff2c2e3-89ed-4709-a830-87b1d112218c" class="">AIST</p><p id="a54c3172-71da-4f07-b4b4-55bb4be5ce43" class="">stabilized ICP + NDT based </p><p id="9055b2f2-5060-44f0-abeb-02ffbc6c0ac9" class="">reported better and more lightweight than LeGO-LOAM (how is the ICP-based?)</p></li></ul><ul id="abac075c-7679-44da-9f50-8739a85f9440" class="bulleted-list"><li><em>RadarSLAM: Radar Based Large-Scale SLAM in All Weathers</em><p id="b0125441-4fd1-4064-938b-5b205b85de7d" class="">Sen Wang </p><p id="d9cb9de2-5143-47ab-85ad-6fd56a98a9b8" class="">a first(?) full slam (i.e., including loop closing) radar slam paper.  </p></li></ul><ul id="a1abe899-4cfb-4675-9676-fc93f882711c" class="bulleted-list"><li><em>LIC-Fusion 2.0: LiDAR-Inertial-Camera Odometry with Sliding-Window Plane-Feature Tracking</em></li></ul><h3 id="fe6f13dc-7e2b-4227-bec5-510fd8fde59a" class=""> <strong>Other sensors (thermal camera, UWB, event camera, etc.)</strong></h3><ul id="294aba0e-1ae9-4e04-a277-31a560df5f87" class="bulleted-list"><li><em>TP-TIO: A Robust Thermal-Inertial Odometry with Deep ThermalPoint</em><p id="46b32c08-fabe-44e6-b4d4-dd7bfd617bfb" class="">CMU</p><p id="edb140af-c1b1-4b16-9331-1be15b2f3fdc" class="">(first) tightly coupled thermal-inertial odometry </p><p id="c220b7e7-787f-4eec-9f86-88f14c54c835" class="">using deep thermal keypoints (using SuperPoint maybe</p></li></ul><ul id="f5da3654-d8a1-46a1-a333-0f059d6301f6" class="bulleted-list"><li><em>Time-Relative RTK-GNSS: GNSS Loop Closure in Pose Graph Optimization</em><p id="b340e707-05b6-4fc6-8be4-d6c211d8415a" class="">TRRTK-GNSS technique, which is a method of implementing a precise carrier phase-based time-differential GNSS with a single low-cost GNSS receiver.</p></li></ul><ul id="c57348fd-3cc1-46ec-b647-303372efd7eb" class="bulleted-list"><li><em>Denoising IMU Gyroscopes with Deep Learning for Open-Loop Attitude Estimation</em><p id="c27fa4eb-fd3c-4f0c-af66-8511d4f8235b" class=""><a href="https://github.com/">https://github.com/</a>mbrossar/denoise-imu-gyro</p></li></ul><ul id="7f46d0ad-ab96-4e12-a2dd-690dc881bfe5" class="bulleted-list"><li><em>Unsupervised Learning of Dense Optical Flow, Depth and Egomotion with Event-Based Sensors</em></li></ul><ul id="e6cace3f-d9a9-49a2-9bf8-24a17f5cccf6" class="bulleted-list"><li><em>IDOL: A Framework for IMU-DVS Odometry using Lines</em><p id="43dcb440-2ee4-41b4-90fb-2dc2c6e93129" class="">event-to-line factor </p></li></ul><ul id="a5276d02-d46d-4979-a1fa-53d954bad8fc" class="bulleted-list"><li><em>Proprioceptive Sensor Fusion for Quadruped Robot State Estimation</em></li></ul><h3 id="9e831a70-af77-408c-ae6b-bd5d2e047829" class=""> <strong>Dynamic environments</strong></h3><ul id="d2bb723e-23e3-4aea-a5ad-dd1abe148ca4" class="bulleted-list"><li><em>SaD-SLAM: A Visual SLAM Based on Semantic and Depth Information</em><p id="9a82dd8b-249b-43a9-9c1f-368809833ac9" class="">compared to DynaSLAM (19 ICRA)</p></li></ul><ul id="22966ecb-0887-4925-8cb0-04f8985b62ca" class="bulleted-list"><li><em>Dynamic Object Tracking and Masking for Visual SLAM</em></li></ul><ul id="0e51c122-2eca-463d-862f-0d0310cbf3c9" class="bulleted-list"><li><em>Speed and Memory Efficient Dense RGB-D SLAM in Dynamic Scenes</em><p id="0d0ecb0a-4033-4a03-81a1-784d377d45a1" class="">dense rgbd mapping </p><p id="5216bbd3-0ba9-47fe-8423-93379c19c31f" class="">small planar patches from superpixels </p></li></ul><ul id="6d28548e-5d11-4eef-ad09-97f3fb3c2c7d" class="bulleted-list"><li><em>Robust Ego and Object 6-DoF Motion Estimation and Tracking</em><p id="b36403ed-6708-4f84-85b1-55cf1f207e82" class="">not naively just removing dynamic obj, but estimating dyn obj&#x27;s SE3 motion </p></li></ul><ul id="159d8ffa-5364-4c81-b2c5-e7b05796d7d4" class="bulleted-list"><li><em>SplitFusion: Simultaneous Tracking and Mapping for Non-Rigid Scenes</em><p id="3e421a11-a314-47c0-b3c7-c8b704c86a07" class="">non-rigid ICP for dynamic object&#x27;s volumetric integration (TUM-RGBD dataset)</p><p id="c0da78f9-2366-484b-a9bd-a8d3e8aecba0" class="">using YOLACT</p></li></ul><h3 id="98be75d8-64a0-476c-a3c9-678fe4576de7" class=""> <strong>Learning</strong></h3><ul id="7b5edd5b-a453-4c49-9873-656c0245df11" class="bulleted-list"><li><em>Deep Keypoint-Based Camera Pose Estimation with Geometric Constraints</em><p id="d2b834ec-5762-420e-b76f-f11a7b00e2aa" class="">deep local feature matching based deep relative pose regression  </p><p id="9ffbd119-4a3e-4b89-b3e5-3be4f2e2c213" class="">Hao Su (the author of pointnet)</p></li></ul><ul id="3806ac2c-461a-457a-abf7-2cc95f3e54af" class="bulleted-list"><li><em>DXSLAM - A Robust and Efficient Visual SLAM System with Deep Features</em><p id="055d3bf6-f9c2-4ea4-a37c-2f4a8f61755e" class="">Application (system) paper. </p><p id="88a00ca4-6e3a-4e5c-a15c-dc2af220a796" class="">SuperPoint + NetVLAD</p></li></ul><ul id="08237f5e-c815-4549-bd3e-7ce0cf5c2e51" class="bulleted-list"><li><em>Dynamic Attention-based Visual Odometry (DAVO)</em><p id="0096f43e-fe27-4054-9ca5-97eb49c61dab" class="">but the results are not touching...</p></li></ul><ul id="c6f4695f-7b7d-4673-9086-31990f1804af" class="bulleted-list"><li><em>Simultaneously Learning Corrections and Error Models for Geometry-Based Visual Odometry Methods</em></li></ul><ul id="2a573804-5b4a-42d6-a1fa-fdc536792569" class="bulleted-list"><li><em>D2VO: Monocular Deep Direct Visual Odometry</em></li></ul><ul id="adeac9c9-af1b-46e0-b43d-013c45815158" class="bulleted-list"><li><em>DMLO: Deep Matching LiDAR Odometry</em><p id="6de2abb8-cf5e-473f-a5e7-49d1dbe931b8" class=""><a href="http://tusimple.ai">TuSimple.ai</a> </p><p id="fdb7428d-ec02-4c91-ad3c-502e07ffe035" class="">deep lidar odometry with local matching (not pose regression)</p><p id="b5476831-71ec-460f-bdad-f6f329ce4497" class="">svd — geometry constraints in the learning framework</p></li></ul><ul id="493bd4d5-4bcf-4585-afc9-156d6cfb05f1" class="bulleted-list"><li><em>End-to-End 3D Point Cloud Learning for Registration Task Using Virtual Correspondences</em><p id="eaef05af-d75c-4b2b-8271-f1c6c7b93b62" class="">a self-supervised method for the pretraining of point cloud registration </p><p id="3e152d00-a1a0-4613-a299-57b043858bd8" class="">self-attention and cross-attetion </p></li></ul><h3 id="af7a8bea-3d0e-4f33-9b7e-ef80e679b934" class=""> <strong>Non-rigid SLAM</strong></h3><ul id="29c98a34-6002-4533-bd70-96736d53cf2c" class="bulleted-list"><li><em>Comparing Visual Odometry Systems in Actively Deforming Simulated Colon Environments</em></li></ul><p id="ddf75794-1537-4856-bfa6-d49cb0a6b834" class="">
+</p><hr id="1d582eaf-64fd-4e41-a76b-4ed8c69b40c9"/><hr id="340a86c5-84d1-486f-8c8c-ede06819d33f"/><h2 id="8a26e93d-f9bd-418f-90ab-02027beeb1d7" class="">SLAM — Back-end</h2><h3 id="e89b1e62-cbaf-4b03-be71-6666295eb869" class=""><strong>Novel Solvers or Formulations</strong></h3><ul id="8aee075d-3a20-4fe4-9020-7059764c781a" class="bulleted-list"><li><em>Towards Real-Time Non-Gaussian SLAM for Underdetermined Navigation</em><p id="b7a658b0-a6d6-4b45-b987-70a5a7936c61" class="">MIT, Leonard, John.</p><p id="8fd7cd09-9816-43e3-81ad-e828aa926b83" class="">Non-gaussian multimodal SLAM (MM-iSAM)</p><p id="947e7011-54de-4608-bea7-3072723f9e86" class="">most SLAM problems solve &quot;overdetermined&quot; system (i.e., the number of measurements is larger than the number of states to estimate), but this paper is about &quot;under&quot;determined system </p><p id="e6acfde5-0a42-4646-9151-3bd117dcfa73" class="">DRT: dead-reckon tethering </p></li></ul><ul id="1b718f92-bb99-4d15-9e3b-c659f9a3b18a" class="bulleted-list"><li><em>Variational Filtering with Copula Models for SLAM</em><p id="c7576ce0-25f1-494f-8521-93209fa0b698" class="">problem: non-gaussian uncertainty in the real world</p><p id="b93077b8-5504-4927-896e-0e6f66cebc19" class="">method: a copula-factorized distribution model </p><p id="58b8370d-a336-4eae-ad86-827e4be931ef" class="">author: Kevin Doherty, John Leonard (MIT)</p></li></ul><ul id="2d973990-c70a-414b-a915-0441e2d054b2" class="bulleted-list"><li><em>Probabilistic Qualitative Localization and Mapping</em><p id="924cf240-2cb6-4eaa-9300-713e52529a76" class="">QSR: qualitative spatial reasoning.</p><p id="11af0b82-dc60-468b-97f8-c527cacc8e29" class="">incorporating a motion model in qualitative estimation</p></li></ul><h3 id="a507869d-0dac-4fa3-a18d-72f2fea30be0" class=""><strong>Robust back-end</strong></h3><ul id="e524f0ee-647e-42f2-91b9-dca7d6a43da4" class="bulleted-list"><li><em>Cluster-Based Penalty Scaling for Robust Pose Graph Optimization</em><p id="777931c8-0150-405e-9994-9184abac4cd6" class="">Cluster-based Penalty Scaling</p><p id="4f5f080a-9b4f-4695-b7ab-df5dfb36c018" class="">comparison to SC, DCS, RRR</p></li></ul><h3 id="c43f024d-0dbe-4edc-9795-450606f7f91f" class=""><strong>Active SLAM</strong></h3><ul id="3d0fba1b-3295-4367-a4f7-501f0cb6b142" class="bulleted-list"><li><em>ARAS: Ambiguity-Aware Robust Active SLAM Based on Multi-Hypothesis State and Map Estimations</em><p id="c7b52bce-816e-4f0e-9790-f610e2bd613c" class="">Kaess</p><p id="29bbf996-fa72-4a66-b032-8bbc47e30e4e" class="">handling ambiguous measurements (based on MH-iSAM2, ICRA19)</p><p id="7f5bc560-8538-4ee6-9671-9bfa556f4664" class="">active loop closing strategy </p><p id="dcfd6e43-2a80-42ad-8b18-f6a6d608e17e" class="">
+</p></li></ul><hr id="325c30e1-549a-420f-941c-82d27d3c2f81"/><hr id="303d3a8a-09af-4394-8684-23cba4157379"/><h2 id="b5424c3d-393c-4ad0-9580-4acf04540afc" class=""><strong>SLAM — Applications</strong></h2><h3 id="93b484db-d475-4d70-9c96-9a3b54263fa5" class="">System Paper</h3><ul id="eac201b7-ac54-4dc1-9161-f9dfddcb1b02" class="bulleted-list"><li><em>Plug-And-Play SLAM: A Unified SLAM Architecture for Modularity and Ease of Use</em><p id="e0527589-e387-4858-9b6b-17706bf330b2" class="">Grisetti (of graph slam tutorial!)</p><p id="3ac66162-2c97-4c64-9a17-5c874cd073ed" class="">they said novel unified framework (but what does &quot;unified&quot; means?)</p></li></ul><ul id="f2aa134d-ff03-4ef7-8f79-c06b7ab656d0" class="bulleted-list"><li><em>GR-SLAM: Vision-Based Sensor Fusion SLAM for Ground Robots on Complex Terrain</em><p id="9e879e6c-2bf8-430c-b19c-ec925ba12f99" class="">system paper — fusing camera, IMU, and encoder measurements in a tightly coupled scheme.</p></li></ul><ul id="695e174e-36ce-4e9d-9901-f9c63d687a82" class="bulleted-list"><li><em>Improving Visual SLAM in Car-Navigated Urban Environments with Appearance Maps</em></li></ul><ul id="beafec98-8c57-40f3-9f6e-89241e054907" class="bulleted-list"><li><em>AVP-SLAM: Semantic Visual Mapping and Localization for Autonomous Vehicles in the Parking Lot</em></li></ul><ul id="fd5b81f2-627b-403c-881d-cbe5def5e6f4" class="bulleted-list"><li><em>Probabilistic Semantic Mapping for Urban Autonomous Driving Applications</em></li></ul><h3 id="5774ada5-bd34-4705-915d-d29a1013f49d" class="">SLAM for Everyone</h3><ul id="e555b10d-4178-44e1-a1b8-2c302fee01d3" class="bulleted-list"><li><em>Pedestrian Motion Tracking by Using Inertial Sensors on the Smartphone</em><p id="9b037aee-2ab4-41f0-af62-8b0f41b7b553" class="">The Chinese University of Hong Kong</p><p id="0261d98f-6751-4bb5-9be4-c4866402457b" class="">EKF + learning-based dynamic measurements noise adapter </p><p id="27e12ad5-ee91-474f-af37-feb529f9b8ae" class="">tests on RIDI dataset / result: 1.28m error for a 59 sec seq.</p></li></ul><ul id="6f679340-7a26-48ab-8377-e52954ff5990" class="bulleted-list"><li><em>An Augmented Reality Spatial Referencing System for Mobile Robots</em><p id="28084e30-34af-47cf-b6c0-76aa94042ac4" class="">but Apple&#x27;s ARkit&#x27;s anchoring is very cool. so compare to the existing APIs...?</p></li></ul><h3 id="eb09522e-6b05-4ba1-ba7b-81247042434e" class="">Field — Underwater </h3><ul id="76349f5b-0f39-4c32-a0b8-c9e4ab9172e9" class="bulleted-list"><li><em>A Point Cloud Registration Pipeline using Gaussian Process Regression for Bathymetric SLAM</em></li></ul><ul id="9ab39cc9-45d9-415c-9904-2765e7cdf7a4" class="bulleted-list"><li>A real-time unscented Kalman filter on manifolds for challenging AUV navigation</li></ul><ul id="8d32838c-d0b3-4f6d-a205-0ff4bd3b0b83" class="bulleted-list"><li><em>A Theory of Fermat Paths for 3D Imaging Sonar Reconstruction</em><p id="d2376d9e-1941-4c40-b462-7549327f589f" class="">Kaess</p></li></ul><h3 id="a2d12d28-440b-417b-92ad-3fad2474bc43" class=""><strong>Field — Construction</strong></h3><ul id="b5cc31e7-bcd1-4562-b275-5f30a2ba36f5" class="bulleted-list"><li><em>Towards RL-Based Hydraulic Excavator Automation</em></li></ul><p id="295ccb04-0e46-4566-83eb-88fe7b26bca9" class="">
+</p><hr id="9ac5f48a-5e1d-4a24-8b04-6066d8511b47"/><hr id="faeb5dc7-967c-4734-809d-150d5616550d"/><h2 id="d93e8c00-91a0-4ac0-a0a8-f07d08fa484d" class=""><strong>Localization (i.e., s</strong>tate estimation of a single agent w.r.t a <em>given map</em>)</h2><p id="de0f43f9-d88c-42ca-b98b-e78a2b05be46" class="">This category is shown in various circumstances — <strong>Including </strong><div class="indented"><p id="36d8a060-d579-4778-9451-962ec6f39f2d" class=""><strong>place recognition for loop closing </strong></p><p id="b3fe8a7b-ec58-4ea7-9945-b377d3ef1e1f" class=""><strong>global localization (i.e., one-shot)</strong></p><p id="da6904af-c454-43d6-903c-d703abc079f5" class=""><strong>tracking and localization </strong></p><p id="e8f4b9d4-b40f-41ba-a854-e695580b4485" class=""><strong>Teach and repeat-based navigation </strong></p><hr id="54aa4352-edc3-4b62-81ae-b6ed090a0680"/></div></p><h3 id="e40d1132-69a7-434b-bdaa-5c3e4f57db13" class=""> <strong>Datasets</strong></h3><ul id="8c4e4382-3a54-4b7c-b574-b43c019e2ce6" class="bulleted-list"><li><em>Pit30M: A Benchmark for Global Localization in the Age of Self-Driving Cars
+</em>Nominated to Finalists for Best Application Paper ✮
+A city-scale camera+lidar dataset aimed for localization benchmarks
+<a href="https://www.uber.com/kr/en/atg/datasets/pit30m/">https://www.uber.com/kr/en/atg/datasets/pit30m/</a></li></ul><ul id="3f370faa-c444-49ba-95f0-8a500f5e3056" class="bulleted-list"><li><em>HouseExpo: A Large-Scale 2D Indoor Layout Dataset for Learning-Based Algorithms on Mobile Robots</em><p id="11c782fd-684a-4b23-8528-8e99bb1c7b72" class="">total 35126 maps </p><p id="d7b869f1-d320-453a-bf33-1d9c36ba4c67" class="">PesudoSLAM: a simulation platform for training a DRL network </p></li></ul><h3 id="a4d19b41-94d1-48b3-ae5f-5f3f5db4fb81" class=""> <strong>Visual sensors</strong></h3><p id="8138caf0-d05b-44fd-9d15-437835caa3a9" class=""><strong>  Indoor</strong></p><ul id="bbe1134f-cbe4-4e0d-8913-8f4104ae330e" class="bulleted-list"><li><em>Monocular Camera Localization in Prior LiDAR Maps with 2D-3D Line Correspondences</em><p id="dad8d841-6ba5-40e0-987b-93e89d4e0712" class="">CMU</p></li></ul><ul id="11d87d1a-6370-4844-b694-69c5f70003e9" class="bulleted-list"><li><em>C*: Cross-Modal Simultaneous Tracking and Rendering for 6-DoF Monocular Camera Localization Beyond Modalities</em><p id="ce737efa-fca6-4ff0-a72e-d3a607a5e21d" class="">AIST</p><p id="39f9d7c6-be84-429c-b299-f80ba406beb3" class="">but didn&#x27;t consider the dynamicity? — so read w.r.t. the concept and rendering skills </p></li></ul><ul id="994626bb-c644-4738-b147-a80fac248594" class="bulleted-list"><li><em>KR-Net: A Dependable Visual Kidnap Recovery Network for Indoor Spaces</em><p id="c3651483-af93-4148-9a55-9bf952c19ea1" class="">Korea univ. </p><p id="de0656f7-1df2-477e-a8f8-0a440b549e3c" class="">iGeM</p></li></ul><p id="7921737b-e024-4a9d-8c37-82220e36f150" class=""><strong>  Outdoor </strong></p><ul id="1b3a7e84-2e36-47a7-ac1c-6cc6532df25e" class="bulleted-list"><li><em>MOZARD: Multi-Modal Localization for Autonomous Vehicles in Urban Outdoor Environments</em><p id="4cab41ac-7023-4076-b876-abb618670c44" class="">ETH</p><p id="0d954061-571a-4b7a-8026-58d05b841c12" class="">camera + LiDAR</p><p id="af3038c1-4f0d-456a-8e58-1c6f87de3d35" class="">outdoor, using curb</p></li></ul><ul id="161bd317-39c1-4261-9d0c-a650bc11c3f5" class="bulleted-list"><li><em>Monocular Localization in HD Maps by Combining Semantic Segmentation and Distance Transform</em><p id="da336fe9-23a6-4da6-8697-b62e6ebfaa43" class="">KIT</p><p id="64741fb4-6b7a-45a4-a211-07b9b639d705" class="">outdoor, but result scale is small, but watch the concept ...</p></li></ul><ul id="f8c9407e-6709-4090-bc91-9856798a3eca" class="bulleted-list"><li>Vision Global Localization with Semantic Segmentation and Interest Feature Points<p id="03a63630-3022-4c9d-8782-8037992449e5" class="">Alibaba</p><p id="3d2e70a1-27de-4782-972e-04d6f5f84122" class="">outdoor, but result scale is small, but watch the concept ...</p></li></ul><ul id="c0dd8ccb-eb3c-4a49-a7f6-a27c96609ffe" class="bulleted-list"><li>Active Perception for Outdoor Localisation with an Omnidirectional Camera<p id="0601e4ef-15ef-4946-be8e-469e9389547d" class="">outdoor, but result scale is small, but watch the concept ...</p></li></ul><ul id="2df9065c-127b-40c9-ac76-37e5c3bc59c1" class="bulleted-list"><li>Globally optimal consensus maximization for robust visual inertial localization in point and line map<p id="05341233-0b20-4872-aa70-ec496809a1c1" class="">Zhejiang University</p><p id="c7fadfd5-17f0-4c76-a0ba-733f0bcea08b" class="">decoupling rotation and translation </p><p id="cee5cda1-2b8a-45e4-80ba-e9a1390cf8ca" class="">1D-BnB for rotation </p><p id="7875de07-0f07-44e8-a53c-5bb13689af16" class="">Prioritized Progressive Voting → shrink the search space of translation from <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mi>R</mi><mn>3</mn></msup></mrow><annotation encoding="application/x-tex">R^3</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span></span><span>﻿</span></span> to <style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.11.1/katex.min.css')</style><span data-token-index="0" contenteditable="false" class="notion-text-equation-token" style="user-select:all;-webkit-user-select:all;-moz-user-select:all"><span></span><span><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>R</mi></mrow><annotation encoding="application/x-tex">R</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.00773em;">R</span></span></span></span></span><span>﻿</span></span> </p></li></ul><ul id="f598b3dd-4778-409f-810c-d21c24a1e294" class="bulleted-list"><li><em>Semantic Localization Considering Uncertainty of Object Recognition</em><p id="0ed3a3ee-d890-465f-a30c-e64c79d18bc4" class="">simulation-only result </p></li></ul><p id="c23f64a0-b4d4-4a39-a633-bbffb1230d00" class=""><strong>  Place recognition </strong></p><ul id="3e644a8f-756b-4fe1-8231-f1eacc9e73c4" class="bulleted-list"><li><em>Online Visual Place Recognition Via Saliency Re-Identification</em><p id="ead025da-5ba4-4ff8-bafc-885a0211357f" class="">Saliency Re-Identification</p><p id="25fee801-2832-4e4d-8bbe-ed6c439805e8" class="">open source </p></li></ul><ul id="3cf933bd-79be-43ec-a662-1513cbbaba04" class="bulleted-list"><li><em>No Map, No Problem: A Local Sensing Approach for Navigation in Human-Made Spaces Using Signs</em><p id="5e1e48ce-f6cc-4556-bd86-5903fc8a9b38" class="">sign-based navigation without accurate geometric pre-built map </p></li></ul><ul id="fd7d932e-8581-4f0b-a904-e24075fd0d8d" class="bulleted-list"><li><em>A Fast and Robust Place Recognition Approach for Stereo Visual Odometry Using LiDAR Descriptors</em></li></ul><ul id="2389103f-a6f3-4d29-8316-b4fbf9ea9b69" class="bulleted-list"><li><em>Augmenting Visual Place Recognition with Structural Cues</em><p id="4493332f-1c59-4991-a808-8233a06ff23c" class="">Scaramuzza</p></li></ul><h3 id="1bd6d338-d1e1-400f-b2f9-52ab6695ce0c" class=""> <strong>Range sensors</strong></h3><p id="f6fcccc4-9479-490c-afb6-c301778b8fd6" class="">  <strong>6D localization (a.k.a. metric localization)</strong></p><ul id="79b0af8a-811c-45e0-91f0-c7994bf9aa84" class="bulleted-list"><li><em>Learning an Overlap-Based Observation Model for 3D LiDAR Localization</em><p id="e35e6597-d837-477c-901e-7dc2d67f7cd9" class="">The author of OverlapNet (RSS20), Cyrill lab</p></li></ul><ul id="f6644da3-457b-4470-aa75-1e4dd09057c8" class="bulleted-list"><li><em>Global Localization Over 2D Floor Plans with Free-Space Density Based on Depth Information</em><p id="317e7827-5dd5-4c1e-aff8-1c4e3c1eaa94" class="">FSD filed (free space)</p></li></ul><p id="60d769a6-17b3-4c74-814c-a08e13335bb9" class=""><strong>  Place recognition</strong></p><ul id="056366fe-d661-42d0-bae7-ca2139f6a263" class="bulleted-list"><li><em>GOSMatch: Graph-of-Semantics Matching for Detecting Loop Closures in 3D LiDAR Data</em><p id="8ea711c2-60be-4411-a34d-0f670a411c88" class="">lidar place recognition </p><p id="b9a1f1eb-bfda-4f95-8f47-e37ee7fdf92c" class="">semantic (but clearly separated object-oriented) graph-based </p><p id="058f81b4-e863-40d8-9c65-6b28a64fb4d1" class="">support reverse loop detection </p></li></ul><ul id="988ee0c5-877a-4bb7-b8d5-f18d690d4896" class="bulleted-list"><li><em>Seed - A Segmentation-Based Egocentric 3D Point Cloud Descriptor for Loop Closure Detection</em><p id="14e23345-7cee-4677-8a00-68c80a349bfc" class="">lidar place recognition </p><p id="fe926c6b-b2a4-413e-a687-60fb1c2ec5e4" class="">just semantic extension of scan context, marginal improvements of the performance </p></li></ul><ul id="2fe37d08-358f-4296-84b6-44a48a84e1d5" class="bulleted-list"><li><em>SeqSphereVLAD: Sequence Matching Enhanced Orientation-invariant Place Recognition</em><p id="cdc43974-b3dc-44f6-a634-daaa581f7a1d" class="">CMU, Ji Zhang (of LOAM) included</p><p id="73287fa9-a131-43e8-aeab-13f911f2ef8a" class="">3D map → project point cloud onto a spherical view → netvlad → rotation equivariant feature</p></li></ul><ul id="80e16f5f-cb0a-4b2c-a2e5-6d8448fce74d" class="bulleted-list"><li><em>LiDAR Iris for Loop-Closure Detection</em><p id="2f52f15a-d4b7-452b-83eb-2db92c070d3e" class="">matching part is different from Scan Context </p><p id="2c1682e9-9ee0-477e-b377-712099c1cf25" class="">but I&#x27;m not sure the matching cost is reasonable (fig 11 omitted it ) </p></li></ul><ul id="31e66b24-ff75-4ec5-9395-04fb6c3c2c6c" class="bulleted-list"><li><em>Semantic Graph Based Place Recognition for 3D Point Clouds</em><p id="597d7fdf-7642-42d0-87aa-6a50a63d3829" class="">graph similarity network </p></li></ul><p id="a27d4355-57b4-4907-bb50-4ecb049a30e4" class=""> <strong>Other sensors</strong></p><ul id="085e4e7e-5356-408f-b2c9-849221ac0dc0" class="bulleted-list"><li><em>SolarSLAM: Battery-free Loop Closure for Indoor Localisation</em><p id="df505b2f-cecc-44b3-987f-7fbd47cc98b4" class="">Sen Wang, HeriotWatt University</p></li></ul><ul id="28e2e461-628a-4dc8-8edc-c663163e06bd" class="bulleted-list"><li><em>Ultra-Wideband Aided UAV Positioning Using Incremental Smoothing with Ranges and Multilateration</em><p id="21b481a4-a26c-4aeb-af05-7641738ab3e5" class="">UWB + IMU → factor graph-based localization </p></li></ul><ul id="28df4319-a935-45e3-b800-5a0a027a0a26" class="bulleted-list"><li><em>Self-Supervised Neural Audio-Visual Sound Source Localization Via Probabilistic Spatial Modeling</em></li></ul><h3 id="5c195c77-7945-4c0a-b64e-5c4efb3f55e3" class=""> <strong>Application</strong></h3><ul id="381f20c0-d33b-4ffe-8643-321165aa3226" class="bulleted-list"><li><em>Versatile 3D Multi-Sensor Fusion for Lightweight 2D Localization</em><p id="2c8a2074-59a2-4ce6-977d-30e78fdc6314" class="">2D lidar + IMU + wheel encoder </p><p id="8d1c91fe-184b-44a4-b9f8-6bd002d81608" class="">Delaware prof Huang. </p></li></ul><h3 id="1577905f-5bd3-471e-9993-e70d2c4bb83d" class=""> <strong>Non-accurate enough for navigation</strong></h3><ul id="8df48943-825a-49d3-9330-5ebecabb3314" class="bulleted-list"><li><em>Accurate and Robust Teach and Repeat Navigation by Visual Place Recognition: A CNN Approach</em><p id="35f3037f-a916-4bca-9a77-01035c7a2138" class="">Czech Technical University in Prague</p></li></ul><p id="28b340bf-2d98-479b-b09b-cd3ee7ae271a" class="">
+</p><hr id="b97be9be-59ca-4a93-8563-2a23d2fed6fc"/><hr id="58479e3d-571b-4816-a435-1ec8edeab267"/><h2 id="5e2e0b47-dbc5-4ff1-a531-74711dd26340" class="">Cooperative SLAM (i.e., temporally or spatially separated multi-agent SLAM)</h2><p id="58333609-607a-4be3-977c-37673fad4500" class="">This category is shown in various circumstances — <strong>Including </strong><div class="indented"><p id="ada1a751-b06f-4b23-a1d8-0959c9053779" class=""><strong>Spatially</strong>: <strong>Multi robot (distributed, robust solver...), </strong></p><p id="74582c40-bd52-4ff7-9b69-f37acd3ed2ce" class=""><strong>Temporally</strong>: <strong>Multi-session (robust data association...)</strong></p><hr id="aba31167-222b-4a22-9f8a-a14fa929cfb3"/></div></p><h3 id="9d8a8f5f-c753-4bff-8d64-ed29a0596c61" class=""> <strong>Middle-ends (about robust data association)</strong></h3><ul id="2569dca4-e7ad-4ded-9000-ad976694b8fd" class="bulleted-list"><li><em>Robust Loop Closure Method for Multi-robot Map Fusion by Integration of Consistency and Data Similarity</em><p id="b0490dd5-65a1-46a3-b5e3-c8ed1f700b88" class="">Do, Haggi. Kim, Jinwhan (KAIST)</p><p id="84c6398d-3ca2-4de3-9fcb-574154c6141a" class="">A front-end-engaged robust middle-end (i.e., considering the similarity of the measurements)</p><p id="b9e82f33-a6c1-4eda-a082-62d5051cbaa1" class="">Comparisons with PCM (18 ICRA)</p></li></ul><h3 id="6a8b9aaa-53bf-489f-8d51-92c7d4606648" class=""> <strong>Back-ends</strong></h3><ul id="f2c06798-9dc3-4058-a3b6-da3475326e09" class="bulleted-list"><li><em>Asynchronous and Parallel Distributed Pose Graph Optimization</em><p id="3765826a-bada-465c-a115-12adb35c6a1a" class="">Tian, Yulun. How, Jonathan Patrick. (MIT)</p><p id="14e0a161-9444-4e85-805d-540aa448ea36" class="">resilient to communication delays </p><p id="32646707-aa0d-49cc-ae71-5935e407b543" class="">Comparisons with DGS (a SOTA synchronous distributed solver method, 17 IJRR Distributed mapping with privacy and communication constraints: Lightweight algorithms and object-based models)</p></li></ul><ul id="a870aa9d-5fad-4a7c-9710-8c146a7bffac" class="bulleted-list"><li><em>Robot-To-Robot Relative Pose Estimation Based on Semidefinite Relaxation Optimization</em><p id="5e425899-2aae-4601-bf9b-db3c8599f6bd" class="">The Chinese University of Hong Kong</p><p id="dd79d2d7-241e-4eb1-acbb-a5b669458642" class="">semidefinite SDP relaxation </p><p id="f2eb7445-ac9d-41a7-ab71-4286a88434c2" class="">theoretical paper... </p></li></ul><ul id="24943a56-2d7a-4f62-8cce-db9dfacf9425" class="bulleted-list"><li><em>Majorization Minimization Methods for Distributed Pose Graph Optimization with Convergence Guarantees</em><p id="b7fc409a-6931-44be-9b7d-21e4ef518596" class="">MM-PGO: majorization minimization method </p><p id="135e1ac3-c3c9-454d-830b-601085c3c1a5" class="">for the distributed chordal initialization </p></li></ul><ul id="96471c77-4b8c-4293-9075-4a6732b729db" class="bulleted-list"><li><em>Distributed Consistent Multi-Robot Semantic Localization and Mapping</em><p id="0473b216-185d-4417-9be6-0c606ca66074" class="">multi-robot semantic SLAM</p></li></ul><h3 id="9a01ff37-64a7-4b01-ba43-bddeb421060a" class=""> Planning</h3><ul id="63d79945-4c25-47cb-b8e0-d3dfe37a1046" class="bulleted-list"><li><em>Multi-Robot Coordinated Planning in Confined Environments under Kinematic Constraints</em></li></ul><ul id="c98d19cd-858a-4bf0-ba66-e01578fb3bba" class="bulleted-list"><li><em>Graph Neural Networks for Decentralized Multi-Robot Path Planning </em></li></ul><ul id="91c293bd-21ff-4e42-9ae1-0ee4661de5aa" class="bulleted-list"><li><em>MAPPER: Multi-Agent Path Planning with Evolutionary Reinforcement Learning in Mixed Dynamic Environments</em></li></ul><h3 id="90416d71-6df2-44b3-a5ae-0191c20a7630" class=""> <strong>Applications</strong></h3><ul id="5b60c103-bf73-436c-b407-4f04c8b9be86" class="bulleted-list"><li><em>Dense Decentralized Multi-Robot SLAM Based on Locally Consistent TSDF Submaps</em><p id="5ff41066-3d91-405c-a0ce-e868914a69b4" class="">An exchange of locally consistent TSDF submaps</p><p id="0eb7936f-893d-4842-af8c-12d3518ed0c0" class="">intra/inter-robot loops are closed using ICP-based submap alignment  </p><p id="42732dd7-d4de-414c-9f43-6e229bbc906d" class="">submap fusion + factor graph optimization → globally consistent map </p></li></ul><ul id="7dc53636-04c6-43c8-b15e-f8c6f3e98532" class="bulleted-list"><li><em>A Decentralized Framework for Simultaneous Calibration, Localization and Mapping with Multiple LiDARs</em><p id="b24d6177-1b21-4092-b870-6bd36a731144" class="">An online calibration of multiple non-overlapped LiDARs</p><p id="47a55db9-4ec3-4727-b550-d306e35d5ea3" class="">The author of livox loam  </p></li></ul><ul id="d7a1a93b-7eb2-4615-9c00-a3af932f15cc" class="bulleted-list"><li><em>Decentralised Self-Organising Maps for Multi-Robot Information Gathering</em><p id="782a6fb3-134d-4b59-a1ab-1ab5a4feecab" class="">Informative path planning</p></li></ul><ul id="d10f59db-d90b-4a1f-baff-f1dfa9258547" class="bulleted-list"><li><em>Inter-Robot Range Measurements in Pose Graph Optimization</em><p id="56437840-6716-414d-b14c-4797ae477bcb" class="">visually non-overlapped region, but using UWB for inter-robot loop closing  </p></li></ul><ul id="4f1b5b03-3292-4c69-9a45-3c9998c53831" class="bulleted-list"><li><em>Collaborative Semantic Perception and Relative Localization Based on Map Matching</em><p id="f2624322-bfcf-46c7-b9c0-0b977911ecc1" class="">semantic data association </p><p id="ed04a4e4-fa88-42f0-b2a3-90e29a25fab5" class="">the problem def and results are straightforward, but would be better if a single contribution is more there ..  </p></li></ul><ul id="026b685a-3075-4242-9f87-c9df7d6f94c3" class="bulleted-list"><li><em>Lane Marking Verification for High Definition Map Maintenance Using Crowdsourced Images</em></li></ul><ul id="989d242c-fde4-4999-99ce-9d743335e62a" class="bulleted-list"><li><em>Multi-Robot Joint Visual-Inertial Localization and 3-D Moving Object Tracking</em></li></ul><ul id="dff6ce8e-84bc-4e69-a865-3f7f546f3b29" class="bulleted-list"><li><em>When We First Met: Visual-Inertial Person Localization for Co-Robot Rendezvous</em></li></ul><p id="0322076f-6c58-4340-810f-af279c81de37" class="">
+</p><hr id="937f328e-44e8-41e0-b774-cc3004129979"/><hr id="0f97e598-1466-43c4-b719-02932d05fecf"/><h2 id="94a03920-f3f7-4bee-96da-a935db1097ac" class="">Mapping (i.e., World modeling)</h2><h3 id="de98f007-62cb-4632-907c-b6577767d088" class=""> <strong>About representation </strong></h3><ul id="5245ff37-cf7c-4625-9161-9ba751323239" class="bulleted-list"><li><em>Deep Inverse Sensor Models as Priors for evidential Occupancy Mapping</em><p id="e7ccf79d-5597-4bb1-b497-baa42c8e5948" class="">radar occupancy mapping</p></li></ul><ul id="618fb589-b403-4941-867d-5e08e6ee4b60" class="bulleted-list"><li><em>UFOMap: An Efficient Probabilistic 3D Mapping Framework That Embraces the Unknown</em><p id="87d3286c-0096-48e8-871b-4c2b1befea13" class="">KTH Sweden</p><p id="5ffe6ed5-08cb-4d67-9d51-b04a08855f1a" class="">OctoMap + Explicit representation of unknown space</p></li></ul><ul id="91cdb228-bc67-40ed-b039-af3a82652527" class="bulleted-list"><li><em>Detecting Usable Planar Regions for Legged Robot Locomotion</em><p id="c18bc906-039f-4960-9aaa-f8b9b9cb4c76" class="">Lower-dimensional representations are more tractable for planning</p></li></ul><ul id="c63db576-05a1-485a-850a-125f301d1a49" class="bulleted-list"><li><em>Accurate Mapping and Planning for Autonomous Racing</em><p id="e7a63324-5647-47ef-9611-656c73e795c9" class="">Application paper / map == cone </p><p id="363d0289-5e50-48ca-92d0-7436429b0e21" class="">Cone as a landmark + PGO SLAM</p><p id="bd4c737f-fd67-43e3-ac93-8be12964075b" class="">Won the Formula Student Germany (FSG) 2019 driverless competition</p></li></ul><ul id="f734913d-c11d-472c-b283-597159d56813" class="bulleted-list"><li><em>Efficient Multiresolution Scrolling Grid for Stereo Vision-based MAV Obstacle Avoidance</em><p id="49dde057-9976-4368-8b2e-dc40a8da0dc7" class="">multi-resolution grid map for planning </p><p id="ee4c2e0f-9998-42c5-ad8f-63d4565efc3f" class="">Kaess, CMU</p></li></ul><ul id="fb64331d-61cc-4c9b-a9a7-5f23619a6dba" class="bulleted-list"><li><em>EAO-SLAM: Monocular Semi-Dense Object SLAM Based on Ensemble Data Association</em><p id="1296c4ff-592a-4bfa-93ad-734cb4badc01" class="">object-oriented map</p></li></ul><ul id="88d6945e-f609-4d11-b2a8-3ebc202221e5" class="bulleted-list"><li><em>Dense Incremental Metric-Semantic Mapping Via Sparse Gaussian Process Regression</em><p id="c6350fb0-ae08-455d-b818-2eff0155818e" class="">A Bayesian inference method for 0online probabilistic metric-semantic mapping via scalable Gaussian Processes regression of semantic class signed distance functions.</p></li></ul><ul id="37d0bc3e-5d74-46c8-a66f-fefa59a72c22" class="bulleted-list"><li><em>Robotic Episodic Cognitive Learning Inspired by Hippocampal Spatial Cells</em></li></ul><ul id="e50da7b0-bac1-42e6-ba6c-3004cebe38de" class="bulleted-list"><li><em>City-Scale Grid-Topological Hybrid Maps for Autonomous Mobile Robot Navigation in Urban Area</em></li></ul><h3 id="1582ff75-82aa-4fe7-be7b-ba8c57f99990" class=""> <strong>About accuracy </strong></h3><ul id="75da8545-c82a-4a1a-aa6a-8a7752e7597d" class="bulleted-list"><li><em>A Model-based Approach to Acoustic Reflector Localization with a Robotic Platform</em><p id="5a817445-4009-4879-8900-67a4551bbe46" class="">problem: Constructing a spatial map of an indoor environment, e.g., a typical office environment with glass surfaces, is a difficult and challenging task. Current state-of-the-art, e.g., camera- and laser-based approaches are unsuitable for detecting transparent surfaces. Hence, the spatial map generated with these approaches are often inaccurate...</p></li></ul><ul id="8cbe0621-5a2d-4951-bee3-00be468b0a38" class="bulleted-list"><li><em>π-Map: A Decision-Based Sensor Fusion with Global Optimization for Indoor Mapping</em><p id="75025cab-6ee4-4223-a503-34818e3078e2" class="">LiDAR-sonar indoor glass env...</p></li></ul><ul id="9eb1d7bb-9b27-46de-92c9-b313e2d424db" class="bulleted-list"><li><em>Adaptive Kernel Inference for Dense and Sharp Occupancy Grids</em><p id="b2bb755c-f09b-4041-9028-4266f1b478bb" class="">KAIST</p><p id="bec4b2f1-3734-4b0a-877a-2c01938aeb9d" class="">an adaptive kernel for occupancy estimation</p></li></ul><ul id="3d49fdf5-b499-43ff-a749-62363aa0e173" class="bulleted-list"><li><em>DenseFusion: Large-Scale Online Dense Pointcloud and DSM Mapping for UAVs</em><p id="eb1f24b8-51a7-409a-a9be-c39c9563ff33" class="">Reprojection error + GPS error — non-linear optimization using Ceres </p><p id="5b2e774e-8cbf-43e7-8020-a256b323bb94" class="">Forty times faster than Pix4D</p></li></ul><ul id="7b43a7f0-729f-4e4a-97e4-e359fcff34fe" class="bulleted-list"><li><em>SpCoMapGAN: Spatial Concept Formation-based Semantic Mapping with Generative Adversarial Networks</em></li></ul><h3 id="9e21d9f5-06b6-4153-9392-048406c4d5d7" class=""> <strong>About efficiency</strong></h3><ul id="e7714808-220e-40d5-a4d5-c742d688d4f1" class="bulleted-list"><li><em>The Masked Mapper - Masked Metric Mapping</em><p id="3ae75b2f-77c1-4cd2-809c-529d49d94699" class="">Edwin Olson </p><p id="2328d2d0-fef8-412f-84f7-b8c0f86f3a59" class="">declares which positions are worth to match against to a current scan (e.g., feature-fruitful intersection)</p></li></ul><ul id="036baea0-430b-4ef5-b9f9-7fc5f42f31e7" class="bulleted-list"><li><em>Crowdsourced 3D Mapping: A Combined Multi-View Geometry and Self-Supervised Learning Approach</em><p id="cc1f0001-fddb-421e-8e4b-f7f60b7813ce" class="">3D traffic sign positioning using crowdsourced data from only monocular color cameras and GPS, without prior knowledge of camera intrinsics</p></li></ul><h3 id="e53c9207-94b2-4405-b4af-04cc4fe0204a" class=""> <strong>About dynamicity (see also &lt;Dynamic environments of SLAM front-end&gt;)</strong></h3><ul id="c2b09ae5-5186-4965-a832-d7bf0a393ec7" class="bulleted-list"><li><em>Allocating Limited Sensing Resources to Accurately Map Dynamic Environments</em><p id="59c2e3b9-b398-4852-9053-1290ef247703" class="">CMU</p><p id="90290039-93dd-4b6c-b182-cb5ed6c1af60" class="">modeling dynamicity into a world model </p></li></ul><ul id="9af8bac2-32d3-4391-a40d-0a126110fe45" class="bulleted-list"><li><em>Object-Based Pose Graph for Dynamic Indoor Environments</em><p id="32cbfabf-1e39-4ba6-9f5f-a6ddceceb4df" class="">a novel method that maintains object-based pose-graphs in dynamic environments</p></li></ul><p id="e44f1b43-d012-4f77-925c-9a2e1a4521e8" class="">
+</p><hr id="e25be293-cd3e-498d-9539-790f4de827c2"/><hr id="c5e114a5-7ab4-498b-adcc-437ad58f2e70"/><h2 id="e9183179-6922-4c08-ac0d-8b8a8c0a8dee" class=""><strong>Change Detection and M</strong>ap Management </h2><p id="930e5072-7016-4b13-8c28-23f1834fc1a2" class="">  <strong>Conceptual</strong></p><ul id="baea958a-fb08-4074-93fc-72d113f0b360" class="bulleted-list"><li><em>QSRNet: Estimating Qualitative Spatial Representations from RGB-D Images</em></li></ul><ul id="0272a8c5-b203-4c60-9664-11f47284aac2" class="bulleted-list"><li><em>3D-Aware Scene Change Captioning from Multiview Images</em></li></ul><ul id="4be2086b-6d4f-4253-bbbd-12df4a392d48" class="bulleted-list"><li><em>Understanding Dynamic Scenes using Graph Convolution Networks</em></li></ul><p id="919314fc-e17f-4a4a-99e0-93f2f00acd1d" class="">  <strong>Indoor change detection </strong></p><ul id="688e6fb8-31a0-46a3-b90d-4fd7cd324923" class="bulleted-list"><li><em>Robust and Efficient Object Change Detection by Combining Global Semantic Information and Local Geometric Verification</em><p id="4bb7e7d3-5401-4c08-9a1e-8395bdf96c26" class="">out-of-place object detection, using reconstruction while ignoring subtle re-adjustments </p><p id="647d12df-64c9-4197-be3c-6978d26757fe" class="">local verification by comparing isolated geometries instead of whole reconstruction </p><p id="963edc35-13bf-4ad8-86aa-548e0137b13e" class="">with new dataset (5 envs, 31 recons, 260 annotated objects)</p></li></ul><p id="f57c1d5e-7079-4282-a09a-3d6c6097524a" class="">  <strong>Outdoor change detection </strong></p><ul id="d0ed591b-3a4f-4757-b9f8-1f20ddb7c147" class="bulleted-list"><li><em>Better Together: Online Probabilistic Clique Change Detection in 3D Landmark-Based Maps</em><p id="ca82da66-0379-4626-8b92-1dbbd2126ad1" class="">not much real-world experiments in there </p></li></ul><ul id="9d251ed4-567c-4c60-88b6-bb85cf148082" class="bulleted-list"><li><em>Self-Supervised Simultaneous Alignment and Change Detection</em><p id="8883cfbf-69d5-4b00-812a-fa1a8b1a098d" class="">AIST of Japan</p></li></ul><ul id="bfb07c1b-5fba-42e5-accb-f9733589d7f1" class="bulleted-list"><li><em>HD Map Change Detection with Cross-Domain Deep Metric Learning</em><p id="a3c2dfb4-7fb9-437a-8d36-f656de72fcb2" class="">NAVER LABS</p></li></ul><ul id="3cda3518-d324-42d1-a3b3-510541fbfba5" class="bulleted-list"><li><em>Remove, Then Revert: Static Point Cloud Map Construction Using Multiresolution Range Images</em><p id="dc0ab2ac-1cd0-4a43-b6d7-2dd1664e87ae" class="">My paper </p></li></ul><p id="699e44dd-0d6a-48d1-bdc1-d72d4ae2cb42" class="">  <strong>Map management  </strong></p><ul id="dbf647a3-efa9-4b25-95a8-bd71bc51a78f" class="bulleted-list"><li><em>Segmentation-Based 4D Registration of Plants Point Clouds for Phenotyping</em><p id="717fe96d-690d-4be4-a68c-5181e6290927" class="">Cyrill lab </p></li></ul><ul id="d033aaeb-6e9e-489b-a63a-813a3a185981" class="bulleted-list"><li><em>Data-Driven Models with Expert Influence - A Hybrid Approach to Spatiotemporal Process Estimation</em><p id="63aac7a3-5a12-4b92-9adc-4b50998c5333" class="">but no real-world results </p></li></ul><ul id="69048e0a-5cfc-41cd-8dcb-59dc108b8d72" class="bulleted-list"><li><em>Delta Descriptors - Change-Based Place Representation for Robust Visual Localization</em><p id="b28ca019-8f1e-4b91-9281-10e2297d59b5" class="">Milford</p></li></ul><ul id="32cae874-8434-4cd9-ac3c-65e95e3ef3d1" class="bulleted-list"><li><em>Lifelong update of semantic maps in dynamic environments</em><p id="417f0a81-14d1-4361-8685-80f79740be79" class="">iRobot Corp.</p><p id="6b558654-a9d4-4416-8176-15ea4437f81e" class="">indoor 4-5 room level.</p></li></ul><p id="974bda0f-6e63-4519-a3d3-0434a3141128" class="">
+</p><hr id="f7822496-4ef8-483d-89cf-ddfefaab2225"/><hr id="9f92356d-96bb-437d-ae16-83bbf0adf85d"/><h2 id="f9209950-75f6-42c9-8367-dab6873fc7bf" class="">Point cloud-based Perception </h2><h3 id="e0d499e1-121a-4bf6-8ec1-700bb9e2afc0" class="">3D data processing </h3><ul id="d5022caf-5d3e-408e-aed1-8c3ccddc32f4" class="bulleted-list"><li><em>Real-Time Spatio-Temporal LiDAR Point Cloud Compression</em><p id="65c67131-2230-48be-b3a5-c64fafd36124" class="">exploiting temporal redundancies</p><p id="97f6b1d1-79ab-4870-bb0a-46ffef4a5f50" class="">40x to 90x compression </p></li></ul><ul id="a5a4aac2-7775-48f4-af11-4e921d2e2bba" class="bulleted-list"><li><em>A Novel Coding Architecture for LiDAR Point Cloud Sequence</em><p id="b58a8eb4-bf58-458e-af47-9dc50263ec57" class="">ConvLSTM</p><p id="557dbbe1-ef6d-4b7c-959b-a416e41e6832" class="">comparison w/ octree, Google Draco, MPEG TMC13</p></li></ul><ul id="77470b70-60f0-4c01-8d06-2e468b9fb48f" class="bulleted-list"><li><em>Uncertainty-aware Self-supervised 3D Data Association</em></li></ul><ul id="572e066b-1e6e-4018-ae4f-582d579c82e2" class="bulleted-list"><li><em>Fully Convolutional Geometric Features for Category-level Object Alignment</em></li></ul><h3 id="adeb108f-03a8-40dd-8ef4-21d8925581f1" class="">  3D Object detection</h3><ul id="70133e26-ac40-42de-bb40-733aeef5180b" class="bulleted-list"><li><em>Inferring Spatial Uncertainty in Object Detection</em></li></ul><ul id="c7d78be9-00c3-41dd-91ce-ea8cc97d768a" class="bulleted-list"><li><em>PillarFlowNet: A Real-time Deep Multitask Network for LiDAR-based 3D Object Detection and Scene Flow Estimation</em><p id="fd6b9fdd-1d4a-444a-9683-7dc766c8600b" class="">Mercedes-Benz AG</p></li></ul><ul id="82cf39a2-d435-4e14-ac0a-ac3b75d73089" class="bulleted-list"><li><em>JRMOT - A Real-Time 3D Multi-Object Tracker and a New Large-Scale Dataset</em></li></ul><ul id="245f2762-d49f-402c-92f9-a69d5d1e53bc" class="bulleted-list"><li><em>Factor Graph based 3D Multi-Object Tracking in Point Clouds</em></li></ul><ul id="81fabe3f-60bd-4bc8-b85d-f1d20fdc4738" class="bulleted-list"><li><em>3D Multi-Object Tracking: A Baseline and New Evaluation Metrics</em></li></ul><ul id="29329c2a-3c77-420c-9a46-1b5f0374449c" class="bulleted-list"><li><em>GRIF Net - Gated Region of Interest Fusion Network for Robust 3D Object Detection from Radar Point Cloud and Monocular Image</em></li></ul><ul id="6a722bff-9042-41af-9d8a-4a6d94842ff8" class="bulleted-list"><li><em>PillarFlow: End-to-end Birds-eye-view Flow Estimation for Autonomous Driving</em><p id="4207860c-74ff-48b5-81d7-fdcaffc77532" class="">Burgard</p></li></ul><ul id="f63dc4c8-fb38-4db9-ac2b-a44e73bc2b06" class="bulleted-list"><li><em>An RLS-Based Instantaneous Velocity Estimator for Extended Radar Tracking</em><p id="121b1a83-c0d3-4f8c-bab0-166d82b0afd7" class="">Hyundai-Aptiv, Singapore</p></li></ul><ul id="607be2ea-ffc0-40e6-a275-7628b662882e" class="bulleted-list"><li><em>MVLidarNet: Real-Time Multi-Class Scene Understanding for Autonomous Driving Using Multiple Views</em><p id="11e33fd4-1802-4c2b-bdc3-bce692589177" class="">NVIDIA</p></li></ul><h3 id="63125ea6-acd7-4508-90f6-6afaaae30528" class="">  Point cloud Segmentation</h3><ul id="189df03e-3a00-40b8-aa0d-b570391f19fe" class="bulleted-list"><li><em>3D-MiniNet - Learning a 2D Representation from Point Clouds for Fast and Efficient 3D LIDAR Semantic Segmentation</em></li></ul><ul id="9ce2c980-254f-47c6-b5f2-addc9ead09d9" class="bulleted-list"><li><em>Cascaded Non-Local Neural Network for Point Cloud Semantic Segmentation</em></li></ul><ul id="9c2e6052-25f4-4dc8-a1a6-6619227443bb" class="bulleted-list"><li><em>3D Instance Embedding Learning with a Structure-Aware Loss Function for Point Cloud Segmentation</em></li></ul><ul id="e4fa0784-14ae-48c4-a706-d3e755c112c6" class="bulleted-list"><li><em>Indoor Scene Recognition in 3D</em><p id="f0b0f32a-e9d2-49b3-8d02-4e6e7b2a46d1" class="">used MinkowskiEngine</p></li></ul><ul id="f6c92f00-dfec-4aa0-95b8-046f16109ac9" class="bulleted-list"><li><em>LiDAR Panoptic Segmentation for Autonomous Driving</em><p id="5af3d019-81c7-4348-8bab-07c1fa3ef948" class="">Cyrill lab </p></li></ul><ul id="d3bd8bbd-aab1-41bd-baa4-cc9c5e175c95" class="bulleted-list"><li><em>Domain Transfer for Semantic Segmentation of LiDAR Data using Deep Neural Networks</em><p id="82235f0d-f696-456b-a4d5-1c02f023b280" class="">Cyrill lab</p></li></ul><ul id="968e82ea-5493-4e00-8f02-b88dba57b2e0" class="bulleted-list"><li><em>GndNet: Fast Ground Plane Estimation and Point Cloud Segmentation for Autonomous Vehicles</em><p id="b227b487-a778-44b8-aa1a-098a22b2c502" class="">using BEV + pointnet per cell </p><p id="4d096792-a4c3-47ce-9814-84dcb6865aa6" class="">55Hz</p></li></ul><p id="2c49fe48-63cc-408c-85b6-51d76c44db0e" class="">
+</p><hr id="20281764-44a5-4fb5-a2da-cae8c0e8d4f4"/><hr id="c704d4b6-4df2-45b3-a616-2192fced1079"/><h2 id="608edaee-8d01-4682-bdba-db28b7f280fa" class=""><strong>Path Planning for Exploration (including Active SLAM)</strong></h2><h3 id="dca199e6-8bda-4074-935f-060cc9e5529a" class=""><strong>Active SLAM</strong></h3><ul id="c9c26017-d274-431e-8778-4c440903fe71" class="bulleted-list"><li><em>Efficient Object Search Through Probability-Based Viewpoint Selection</em></li></ul><ul id="bfc12bd6-1ea3-4781-83f4-e3381d54c1df" class="bulleted-list"><li><em>Perception-aware Path Planning for UAVs using Semantic Segmentation</em><p id="138fab39-e66c-4172-8eab-0559589242cd" class="">UAV, to construct a more semantically fruitful map </p></li></ul><ul id="0feeb84c-acf9-47ec-a572-842c479fc87c" class="bulleted-list"><li><em>Frontier Detection and Reachability Analysis for Efficient 2D Graph-SLAM Based Active Exploration</em><p id="c68a46e6-b96e-44a7-ab08-1a62c0555dce" class="">Frontier Detection and analyze the reachability of frontiers</p></li></ul><ul id="3ab0d6ec-934a-4260-bef0-4641f0b5333b" class="bulleted-list"><li><em>Autonomous Spot: Long-Range Autonomous Exploration of Extreme Environments with Legged Locomotion
+</em>Nominated to Finalists for Best Paper on Safety, Security, and Rescue Robotics in memory of Motohiro Kisoi ✮
+Jet Propulsion Laboratory</li></ul><h3 id="cf098b2f-5470-45b6-9ca5-7823dc4ecd2e" class=""><strong>Learning </strong></h3><ul id="55ac8c72-dcb4-470a-a90c-12bfcfe51d2d" class="bulleted-list"><li>Online Exploration of Tunnel Networks Leveraging Topological CNN-Based World Predictions<p id="06e7c3df-6b86-4cd6-b7ba-063127167272" class="">&quot;topological structural cues such as loops and dead-ends provide insights about an unexplored world&quot;</p><p id="a04820e2-5813-4d2a-acfd-ab07bb53b526" class="">a frontier-based exploration strategy </p></li></ul><ul id="f67fea38-c6d3-4932-b87d-82f597dc2c5e" class="bulleted-list"><li><em>Reinforcement Co-Learning of Deep and Spiking Neural Networks for Energy-Efficient Mapless Navigation with Neuromorphic Hardware</em><p id="84f0c3ce-b917-4988-a304-8e76e18ec63d" class="">Spiking DDPG</p><p id="54dc4d64-b0ce-4847-85a3-47539ee8eadc" class="">Intel Loihi processor for SNN</p><p id="e96a0f2d-09d2-4b39-b3a2-3ad555ecbbaf" class="">Rutgers University. Tang, Guangzhi. Michmizos, Konstantinos.</p></li></ul><ul id="32619940-7543-4ba7-9a84-b39c3f71df08" class="bulleted-list"><li><em>Efficient Exploration in Constrained Environments with Goal-Oriented Reference Path</em><p id="85137efb-0e19-4278-8457-4501c04b6729" class="">Mitsubishi Electric and AIST</p></li></ul><ul id="3e3b3527-6ddd-4ee0-821c-55c261b53a05" class="bulleted-list"><li><em>Learning to Use Adaptive Motion Primitives in Search-Based Motion Planning for Navigation</em><p id="afecc83c-cd1e-47b6-aa03-fc19158b395e" class="">A model to approximate decision boundary for primitive validity </p><p id="25ee411a-639b-407c-9a45-23fb4fdf9336" class="">CMU</p><p id="e97805b3-b20a-48b3-94de-e44fca35d3e1" class="">
+</p></li></ul><hr id="3060c196-8415-4d94-ac2c-592ec43d1969"/><hr id="a024a6dc-d373-4e48-8d08-9e581e4dbabd"/><h2 id="e4707041-565b-458c-80e9-4775438a9896" class=""><strong>Path Planning for Collision Avoidance (e.g., crowd environment)</strong></h2><h3 id="52ff1a8d-e0b6-4dd3-8004-468486b811fd" class=""> <strong>Non-learning </strong></h3><ul id="76cf35f9-7ae2-4af9-a111-4328092378e2" class="bulleted-list"><li><em>Roadmap Subsampling for Changing Environments</em>
+multi-query robot motion planning <p id="8fd3edf0-6970-4d35-99ac-a236656fe4d8" class="">finding high-quality paths</p></li></ul><ul id="75410e83-455e-4309-a1b0-e72295b105f9" class="bulleted-list"><li><em>Computationally Efficient Obstacle Avoidance Trajectory Planner for UAVs Based on Heuristic Angular Search Method
+</em>finding a collision-free path — lighter</li></ul><ul id="323b2da3-78d4-4d6e-8a51-c93a35b42500" class="bulleted-list"><li><em>A modified Hybrid Reciprocal Velocity Obstacles approach for multi-robot motion planning without communication</em><p id="98553ac8-02d0-48be-9520-2d7f050a2a4c" class="">an online reactive motion planning</p><p id="5a05c7b5-ff35-4e12-9489-6ab3b254a9b1" class="">distributed multi-agent collision avoidance</p><p id="b181faa2-d88e-40d1-9e61-9a1624f8785e" class="">without communication </p></li></ul><ul id="68ecf43d-23e5-4563-85f4-c226932eb3a1" class="bulleted-list"><li><em>A Data-Driven Framework for Proactive Intention-Aware Motion Planning of a Robot in a Human Environment</em><p id="6e71fb31-1283-40e5-9bd0-2ec250d39337" class="">a robot in shared environments (with humans)</p><p id="0db68897-ea24-4e43-b7be-657dd21a9226" class="">proactive motion planning </p><p id="d9a645fe-4737-4931-9980-c291e7f50875" class="">HMM</p></li></ul><ul id="ea0b2def-0c83-4203-914d-d8dc73e3523e" class="bulleted-list"><li><em>Frozone: Freezing-Free, Pedestrian-Friendly Navigation in Human Crowds</em><p id="8baccb2d-9a74-4885-a5e8-159250fba358" class="">PFZ (potential freezing zone), where potentially obtrusive to humans</p></li></ul><ul id="1ded0773-11d9-43bd-8499-4f6ef975c2ad" class="bulleted-list"><li><em>Efficient Trajectory Library Filtering for Quadrotor Flight in Unknown Environments</em><p id="a8557da8-f2cb-4512-b96e-807dde106433" class="">CMU (including Kaess)</p></li></ul><ul id="f3eef439-b638-4bc3-b4ff-76056cb48dff" class="bulleted-list"><li><em>Online Planning in Uncertain and Dynamic Environment in the Presence of Multiple Mobile Vehicles</em></li></ul><h3 id="63f0eee5-e332-4a9b-9084-03691bc535ae" class=""> <strong>Learning </strong></h3><ul id="65908c54-5346-4056-b648-bcaca167bea6" class="bulleted-list"><li><em>Robot Navigation in Crowded Environments Using Deep Reinforcement Learning
+</em>Dube, ETH Zurich
+imitation learning + RL -&gt; motion planning in crowded and cluttered env.
+seperates static/dynamic</li></ul><ul id="95bff1ad-e872-4970-bf38-4f426004e4f8" class="bulleted-list"><li><em>Learning Local Planners for Human-Aware Navigation in Indoor Environments</em><p id="b9e93d06-1c3b-43aa-b35f-9faa4714f67d" class="">Deep RL, PPO (proximal policy optimization)</p><p id="dcef3c58-9ce1-4d5e-a773-d70ecbfde941" class="">integrating pedestrian motion model (with ROS simulator pedsim_ros)</p></li></ul><ul id="78663965-07fa-4d83-b5e3-9c3e83d5a6d9" class="bulleted-list"><li><em>Hierarchical Reinforcement Learning Method for Autonomous Vehicle Behavior Planning</em><p id="9d5bf8d3-3804-46c2-8382-cfd9529b45d0" class="">CMU</p></li></ul><ul id="d2e65874-3456-4b5e-93b9-4353459b4620" class="bulleted-list"><li><em>DeepMNavigate: Deep Reinforced Multi-Robot Navigation Unifying Local and Global Collision Avoidance</em></li></ul><p id="fb75b07e-5495-4737-89fe-0e5c44791fec" class="">
+</p><hr id="2109d9d2-3d27-4139-903a-d9d820c181f1"/><hr id="9f932763-b026-4c38-9a37-675a05f7ae9d"/><h2 id="9641ac0e-aa61-462f-a2ce-649dbaf10a76" class="">Navigation</h2><ul id="2857c5fc-a969-43a5-b4e3-732ceb0a2a74" class="bulleted-list"><li><em>The Marathon 2: A Navigation System
+</em>Samsung Research America</li></ul><ul id="7cc84295-4fda-4eed-8a78-f931e7917334" class="bulleted-list"><li><em>Learning Your Way Without Map or Compass: Panoramic Target Driven Visual Navigation</em></li></ul><ul id="75f60bc5-b7a9-4eb0-b22e-b729010e59c9" class="bulleted-list"><li><em>Autonomous Robot Navigation Based on Multi-Camera Perception</em></li></ul><ul id="5f34cddd-eadf-4c4f-a9dc-0b70e982dc61" class="bulleted-list"><li>Intelligent Exploration and Autonomous Navigation in Confined Spaces</li></ul><p id="8954c55c-686d-4a4f-a9da-9eac4d63bbca" class="">
+</p><hr id="a85dd450-b08d-4ad4-b563-0905903e9d87"/><hr id="ed7dfa86-1284-42f5-bb9f-dfb8f5985634"/><h2 id="6f38cab6-2f6a-4d99-bd93-6b7919ce196e" class="">Autonomous Driving </h2><p id="4ab32451-0ee4-4cf0-9c8d-c445a7c1786a" class=""><strong>Depth prediction</strong></p><ul id="e964c547-6a26-4b31-89fa-f9d61abd3540" class="bulleted-list"><li><em>Monocular Depth Prediction through Continuous 3D Loss</em><p id="f264d313-c5ce-46d6-a328-9f2856625324" class="">UMich</p></li></ul><ul id="2df95294-50a2-4571-b33f-fe60ec963102" class="bulleted-list"><li><em>MSDPN: Monocular Depth Prediction with Partial Laser Observation using Multi-stage Neural Networks</em><p id="8dd11435-9608-4db4-ab83-fa5226b71970" class="">KAIST</p></li></ul><ul id="aedebbe8-c550-49a8-bb68-39596419f332" class="bulleted-list"><li><em>Depth Estimation from Monocular Images and Sparse Radar Data</em><p id="8dae313a-b263-421f-bab0-b184d529e075" class="">ETH Luc Van Gool</p></li></ul><ul id="8c43ba93-ebf9-451a-b199-df2927033b2c" class="bulleted-list"><li><em>Confidence Guided Stereo 3D Object Detection with Split Depth Estimation</em><p id="b76c92c0-0d54-4ece-bff1-5bf2db182942" class="">fore/background splitted depth estimation</p><p id="b0d92e41-88d4-4ebb-be77-3db6f27ebf3e" class="">concerning uncertainty in the depth estimation  </p></li></ul><ul id="8651ed3c-1d3b-4dde-9966-6baa210e2b97" class="bulleted-list"><li><em>Depth Completion via Inductive Fusion of Planar LIDAR and Monocular Camera</em></li></ul><ul id="8469af24-8ce2-487c-872f-0d7f0ce39378" class="bulleted-list"><li><em>DeepLiDARFlow: A Deep Learning Architecture For Scene Flow Estimation Using Monocular Camera and Sparse LiDAR</em></li></ul><p id="5d693507-cd76-4566-b02c-0d7abb878cfe" class=""><strong>Road</strong> <strong>Perception</strong></p><ul id="5d110705-b8a2-4ffd-84d9-e7e2fc42873c" class="bulleted-list"><li><em>DSSF-Net: Dual-Task Segmentation and Self-Supervised Fitting Network for End-To-End Lane Mark Detection</em><p id="f72f61e1-2d8c-4cfb-87cc-5f0d407c7a89" class="">a self-supervised lane fitting method </p></li></ul><p id="4146516a-219b-4130-b716-7d36f16b940f" class=""><strong>System</strong></p><ul id="87b04915-52d1-46e6-9393-74568dd9cc0f" class="bulleted-list"><li>Accurate, Low-Latency Visual Perception for Autonomous Racing - Challenges, Mechanisms, and Practical Solutions</li></ul><p id="8f7cb0c1-07ba-49b6-9386-895bad62594a" class=""><strong>Trajectory Prediction</strong></p><ul id="8a0ed833-4d70-4f39-b0fa-f2d2b64427f0" class="bulleted-list"><li><em>Action Sequence Predictions of Vehicles in Urban Environments Using Map and Social Context</em></li></ul><ul id="e2690d75-a615-4ae6-95d1-2535768c1496" class="bulleted-list"><li><em>DiversityGAN: Diversity-Aware Vehicle Motion Prediction Via Latent Semantic Sampling</em><p id="4c95241b-f744-467f-930a-8006bc538296" class="">Leonard, John MIT</p></li></ul><ul id="7bbd2c51-6479-45c8-a384-ba68aeda3916" class="bulleted-list"><li><em>The Importance of Prior Knowledge in Precise Multimodal Prediction</em></li></ul><ul id="27ef88dc-a2b5-459e-bd3f-c09fb10a8371" class="bulleted-list"><li><em>Lane-Attention: Predicting Vehicles&#x27; Moving Trajectories by Learning Their Attention Over Lanes</em><p id="43f16068-5eaa-4f73-83ed-70eefd7a7de2" class="">spatio-temporal graph NN</p></li></ul><p id="6116f3b5-1292-40e8-84a7-e40e3b0c9ba9" class=""><strong>Control</strong></p><ul id="e7f3de71-1152-4fc9-8d9d-27135e39ebdc" class="bulleted-list"><li><em>End-to-end Autonomous Driving Perception with Sequential Latent Representation Learning</em><p id="f58c9969-c2a9-4665-a079-e82cbda1db4e" class="">Uber ATG</p></li></ul><ul id="a6639748-62cd-4664-b7a2-449d8c9a2c09" class="bulleted-list"><li><em>End-to-End Velocity Estimation For Autonomous Racing</em><p id="b92244ce-818f-49f1-b981-6434ba80058d" class="">ETH</p></li></ul><p id="17171c99-8253-40b5-97d0-4edac6b903c9" class="">
+</p><hr id="ff51cac7-f1ea-4020-9c5d-28d3d25e7dc5"/><hr id="1aa23cc7-4444-495c-8a5f-4e93c93ed658"/><h2 id="c63f0268-bb9b-4453-ba3c-94a7cec495c6" class="">HRI</h2><ul id="25a5d59f-95a3-46d9-895a-c40413e32c36" class="bulleted-list"><li><em>To Ask or Not to Ask: A User Annoyance Aware Preference Elicitation Framework for Social Robots</em></li></ul><p id="4e590a27-4eb0-455b-bf5d-9ceeb1a20329" class="">
+</p><hr id="9721a569-402f-4af1-b4b1-7d66ddb78c71"/><hr id="09c79ef8-1484-49c5-a224-797e97b130f5"/><h1 id="4e706b62-1458-49e1-8152-a779f818109a" class="">Best paper finalists</h1><ul id="c61f31d1-c1f0-4d39-b748-c1d8025cd8df" class="toggle"><li><details open=""><summary>Toggle</summary><ul id="5c16deff-c9b8-499e-a5bc-e6a481686270" class="bulleted-list"><li><em>Pit30M: A Benchmark for Global Localization in the Age of Self-Driving Cars
+</em>Nominated to Finalists for Best Application Paper ✮
+A city-scale camera+lidar dataset aimed for localization benchmarks
+<a href="https://www.uber.com/kr/en/atg/datasets/pit30m/">https://www.uber.com/kr/en/atg/datasets/pit30m/</a></li></ul><ul id="f8d8da83-3575-43e3-8d55-1709ca28d93d" class="bulleted-list"><li><em>Incorporating Spatial Constraints into a Bayesian Tracking Framework for Improved Localisation in Agricultural Environments
+</em>Nominated to Finalists for Best Agri-robotics Paper ✮
+TPF (Topological particlee filter)</li></ul><ul id="8c16d9df-8730-4e47-a59a-154fc927b24b" class="bulleted-list"><li><em>Graph-Based Hierarchical Knowledge Representation for Robot Task Transfer from Virtual to Physical World
+</em>Nominated to Finalists for Best Paper Award ✮
+and-or graph for knowledge representation</li></ul><ul id="fff8df67-c821-4717-9556-87825d3ad9fc" class="bulleted-list"><li><em>Acquiring Mechanical Knowledge from 3D Point Clouds
+</em>Nominated to Finalists for Best Paper in Cognitive Robotics ✮</li></ul><ul id="5d6fc385-6f09-4594-a370-f8456e4b5b47" class="bulleted-list"><li><em>Navigation on the Line: Traversability Analysis and Path Planning for Extreme-Terrain Rappelling Rovers
+</em>Nominated to Finalists for Best Paper on Safety, Security, and Rescue Robotics in memory of Motohiro Kisoi ✮
+Jet Propulsion Laboratory</li></ul><ul id="d5732622-4e39-4181-b6c8-b8804c8287c0" class="bulleted-list"><li><em>Autonomous Spot: Long-Range Autonomous Exploration of Extreme Environments with Legged Locomotion
+</em>Nominated to Finalists for Best Paper on Safety, Security, and Rescue Robotics in memory of Motohiro Kisoi ✮
+Jet Propulsion Laboratory</li></ul><ul id="5d042462-70d0-41b9-806c-aec347c1e329" class="bulleted-list"><li>Nominated to Finalists for Best RoboCup Paper ✮<ul id="508d1e9c-978a-43d0-9c0f-168ff3c03ad4" class="bulleted-list"><li><em>Task Planning with Belief Behavior Trees</em></li></ul><ul id="7908d9a5-1689-4c78-9816-8e7ce0ade2a8" class="bulleted-list"><li><em>The Marathon 2: A Navigation System
+</em>Samsung Research America</li></ul><ul id="a3e6d8a5-7c7d-4803-80b8-95d80d2b6077" class="bulleted-list"><li><em>Relative Pose Estimation and Planar Reconstruction Via Superpixel-Driven Multiple Homographies</em></li></ul></li></ul></details></li></ul><p id="6e34b239-42f3-4636-9a8a-e1819afdf603" class="">
+</p></div></article></body></html>
